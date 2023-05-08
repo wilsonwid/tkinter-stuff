@@ -18,6 +18,8 @@ import tkinter as tk
 
 # frame appearance can also be adjusted 
 
+# =========================================================================================
+
 border_effects = {
     "flat": tk.FLAT,
     "sunken": tk.SUNKEN,
@@ -47,19 +49,44 @@ border_effects = {
 
 # If you don't choose a `side` in .pack(), then it will automatically default to tk.TOP
 
+# =========================================================================================
+# window = tk.Tk()
 
-window = tk.Tk()
+# frame1 = tk.Frame(master = window, width = 200, height = 100, bg = "red")
+# frame1.pack(fill = tk.Y, side = tk.LEFT) # tk.Y makes vertical resizes resopnsive; tk.X makes horizontal resizes responsive
 
-frame1 = tk.Frame(master = window, width = 200, height = 100, bg = "red")
-frame1.pack(fill = tk.Y, side = tk.LEFT) # tk.Y makes vertical resizes resopnsive; tk.X makes horizontal resizes responsive
+# frame2 = tk.Frame(master = window, width = 100, bg = "yellow")
+# frame2.pack(fill = tk.Y, side = tk.LEFT)
 
-frame2 = tk.Frame(master = window, width = 100, bg = "yellow")
-frame2.pack(fill = tk.Y, side = tk.LEFT)
+# frame3 = tk.Frame(master = window, width = 100, bg = "blue")
+# frame3.pack(fill = tk.Y, side = tk.LEFT)
 
-frame3 = tk.Frame(master = window, width = 100, bg = "blue")
-frame3.pack(fill = tk.Y, side = tk.LEFT)
-
-window.mainloop()
+# window.mainloop()
 
 # to make resizes in both directions responsive, set the `fill` attribute to tk.BOTH and set `expand` to True
 
+# =========================================================================================
+
+# the .place() geometry manager allows you to place the widget in the exact location you want it to be
+# however, since it's non-responsive and is difficult to manage layouts with, it isn't normally used
+# people more often use the .grid() geometry manager since it's more intuitive
+
+
+window = tk.Tk()
+
+for i in range(3):
+    for j in range(3):
+        frame = tk.Frame(
+            master = window,
+            relief = tk.RAISED,
+            borderwidth = 1
+        )
+
+        frame.grid(row = i, column = j, padx = 3, pady = 3) # the padx and pady are between the frames
+        label = tk.Label(master = frame, text = f"Row: {i}, Column: {j}")
+        label.pack() # can also add padx and pady here
+
+window.mainloop()
+
+# Even though .grid() is called on each Frame, the geometry manager actually acts upon the window object
+# Even though .pack() is called on each Label, the geometry manager acts on the Frame
