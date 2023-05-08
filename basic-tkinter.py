@@ -9,7 +9,6 @@ greeting = tk.Label(text="Hello World!")
 greeting.pack()
 
 # need to add the event loop in order for the program to NOT exit immediately
-window.mainloop()
 
 # different kinds of widgets: Label, Button, Entry, Text, Frame
 # Entry only allows for one line of text, while Text allows multiline text
@@ -17,8 +16,21 @@ window.mainloop()
 
 # we can actually add colours to labels
 
-label = Label(
+label = tk.Label(
     text="Hello Tkinter",
     foreground="white",
     background="black"
 )
+
+entry = tk.Entry()
+
+label.pack()
+entry.pack()
+
+print(entry.get())
+window.mainloop()
+# can also use fg, bg, width, height settings; the colours can also be in hexadecimal form
+
+
+# to get some text that is entered into an Entry widget, we can use <entry>.get()
+# need to actually do this inside the Python shell
