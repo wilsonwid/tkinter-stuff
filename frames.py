@@ -72,9 +72,37 @@ border_effects = {
 # people more often use the .grid() geometry manager since it's more intuitive
 
 
+# window = tk.Tk()
+
+# for i in range(3):
+#     for j in range(3):
+#         frame = tk.Frame(
+#             master = window,
+#             relief = tk.RAISED,
+#             borderwidth = 1
+#         )
+
+#         frame.grid(row = i, column = j, padx = 3, pady = 3) # the padx and pady are between the frames
+#         label = tk.Label(master = frame, text = f"Row: {i}, Column: {j}")
+#         label.pack() # can also add padx and pady here
+
+# window.mainloop()
+
+# Even though .grid() is called on each Frame, the geometry manager actually acts upon the window object
+# Even though .pack() is called on each Label, the geometry manager acts on the Frame
+
+# =========================================================================================
+
+# That being said, the geometry manager doesn't result in a responsive GUI
+# To make it responsive, we use window.columnconfigure() and window.rowconfigure()
+
 window = tk.Tk()
 
 for i in range(3):
+    # weight determines how quickly the column/row grows relative to other columns/rows
+    window.columnconfigure(i, weight = 1, minsize = 75) 
+    window.rowconfigure(i, weight = 1, minsize = 50)
+
     for j in range(3):
         frame = tk.Frame(
             master = window,
@@ -82,11 +110,9 @@ for i in range(3):
             borderwidth = 1
         )
 
-        frame.grid(row = i, column = j, padx = 3, pady = 3) # the padx and pady are between the frames
+        frame.grid(row = i, column = j, padx = 5, pady = 5)
+
         label = tk.Label(master = frame, text = f"Row: {i}, Column: {j}")
-        label.pack() # can also add padx and pady here
-
+        label.pack(padx = 5, pady = 5)
+    
 window.mainloop()
-
-# Even though .grid() is called on each Frame, the geometry manager actually acts upon the window object
-# Even though .pack() is called on each Label, the geometry manager acts on the Frame
