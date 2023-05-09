@@ -96,23 +96,45 @@ border_effects = {
 # That being said, the geometry manager doesn't result in a responsive GUI
 # To make it responsive, we use window.columnconfigure() and window.rowconfigure()
 
-window = tk.Tk()
+# window = tk.Tk()
 
-for i in range(3):
-    # weight determines how quickly the column/row grows relative to other columns/rows
-    window.columnconfigure(i, weight = 1, minsize = 75) 
-    window.rowconfigure(i, weight = 1, minsize = 50)
+# for i in range(3):
+#     # weight determines how quickly the column/row grows relative to other columns/rows
+#     window.columnconfigure(i, weight = 1, minsize = 75) 
+#     window.rowconfigure(i, weight = 1, minsize = 50)
 
-    for j in range(3):
-        frame = tk.Frame(
-            master = window,
-            relief = tk.RAISED,
-            borderwidth = 1
-        )
+#     for j in range(3):
+#         frame = tk.Frame(
+#             master = window,
+#             relief = tk.RAISED,
+#             borderwidth = 1
+#         )
 
-        frame.grid(row = i, column = j, padx = 5, pady = 5)
+#         frame.grid(row = i, column = j, padx = 5, pady = 5)
 
-        label = tk.Label(master = frame, text = f"Row: {i}, Column: {j}")
-        label.pack(padx = 5, pady = 5)
+#         label = tk.Label(master = frame, text = f"Row: {i}, Column: {j}")
+#         label.pack(padx = 5, pady = 5)
     
-window.mainloop()
+# window.mainloop()
+
+
+
+# =========================================================================================
+
+# One can use the `sticky` argument inside .grid() to determine where the element sticks inside the grid cell
+
+window = tk.Tk()
+window.columnconfigure(0, minsize = 250)
+window.rowconfigure([0, 1], minsize = 100)
+
+label1 = tk.Label(master = window, text = "A")
+label1.grid(row = 0, column = 0, sticky = "n")
+
+label2 = tk.Label(master = window, text = "B")
+label2.grid(row = 1, column = 0, sticky = "s") 
+# arguments to `sticky` can either be "n", "e", "s", "w" or their capitalised versions
+# can also use combinations of them
+# to fill an entire cell, use `sticky = "nsew"`
+
+
+
